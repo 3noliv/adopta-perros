@@ -1,57 +1,148 @@
-import React, { useState, useEffect } from 'react';
-import Filters from './components/Filters';
-import PetList from './components/PetList';
-import AdoptionForm from './components/AdoptionForm';
+import React, { useState, useEffect } from "react";
+import PetList from "./components/PetList";
+import AdoptionForm from "./components/AdoptionForm";
+import "./App.css";
 
-function App() {
-  const [filters, setFilters] = useState({ type: '', age: '', status: '', sex: '' });
-  const [pets, setPets] = useState([]); // Asegurarse de que siempre es un arreglo
+const App = () => {
+  const [pets, setPets] = useState([]);
   const [selectedPet, setSelectedPet] = useState(null);
-  const [adoptionData, setAdoptionData] = useState({ name: '', email: '', address: '' });
+  const [filters, setFilters] = useState({
+    tipo: "",
+    genero: "",
+    estado: "",
+  });
+  const [appliedFilters, setAppliedFilters] = useState(filters);
 
-  // 5. Simulación de la API (useEffect para obtener la lista de mascotas)
+  // Obtener los datos de la API
   useEffect(() => {
-    fetch('https://huachitos.cl/api/animales')
-      .then((res) => res.json())
-      .then((data) => {
-        // Asegúrate de que 'data' sea un arreglo antes de pasarlo a setPets
-        if (Array.isArray(data)) {
-          setPets(data);
-        } else {
-          console.error("La respuesta no es un arreglo", data);
-          setPets([]); // Si no es un arreglo, lo dejamos como vacío para evitar errores
-        }
-      })
-      .catch((error) => {
-        console.error("Error al obtener los datos de la API", error);
-        setPets([]); // En caso de error, inicializa como arreglo vacío
-      });
-  }, [filters]);
+    fetch("https://huachitos.cl/api/animales")
+      .then((response) => response.json())
+      .then((data) => setPets(data.data))
+      .catch((error) => console.error("Error fetching data:", error));
+  }, []);
 
-  // 6. Manejo del envío del formulario de adopción
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert(`Solicitud enviada para adoptar a ${selectedPet.name} por ${adoptionData.name}`);
-    setAdoptionData({ name: '', email: '', address: '' });
-    setSelectedPet(null);
+  const handleAdopt = (pet) => {
+    setSelectedPet(pet);
   };
+
+  const handleFilterChange = (e) => {
+    const { name, value } = e.target;
+
+    // Actualiza el filtro solo para la categoría seleccionada
+    setFilters((prev) => ({
+      ...prev,
+      [name]: prev[name] === value ? "" : value,
+    }));
+  };
+
+  const handleFilterSubmit = (e) => {
+    e.preventDefault();
+    setAppliedFilters(filters);
+  };
+
+  const filteredPets = pets.filter((pet) => {
+    return (
+      (appliedFilters.tipo ? pet.tipo === appliedFilters.tipo : true) &&
+      (appliedFilters.genero ? pet.genero === appliedFilters.genero : true) &&
+      (appliedFilters.estado ? pet.estado === appliedFilters.estado : true)
+    );
+  });
 
   return (
     <div>
-      <h1>Formulario de Adopción de Mascotas</h1>
-      <Filters filters={filters} setFilters={setFilters} />
-      {/* Valida que pets sea un arreglo antes de pasarle a PetList */}
-      {Array.isArray(pets) && <PetList pets={pets} onSelectPet={setSelectedPet} />}
-      {selectedPet && (
-        <AdoptionForm
-          selectedPet={selectedPet}
-          adoptionData={adoptionData}
-          setAdoptionData={setAdoptionData}
-          onSubmit={handleSubmit}
-        />
+      <h1>Adopta una mascota</h1>
+      <form onSubmit={handleFilterSubmit} className="filter-form">
+        <div className="filter-group">
+          <h3>Tipo de animal:</h3>
+          <div className="button-group">
+            <label>
+              <input
+                type="checkbox"
+                name="tipo"
+                value="Perro"
+                checked={filters.tipo === "Perro"}
+                onChange={handleFilterChange}
+              />
+              Perro
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="tipo"
+                value="Gato"
+                checked={filters.tipo === "Gato"}
+                onChange={handleFilterChange}
+              />
+              Gato
+            </label>
+          </div>
+        </div>
+
+        <div className="filter-group">
+          <h3>Sexo:</h3>
+          <div className="button-group">
+            <label>
+              <input
+                type="checkbox"
+                name="genero"
+                value="macho"
+                checked={filters.genero === "macho"}
+                onChange={handleFilterChange}
+              />
+              Masculino
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="genero"
+                value="hembra"
+                checked={filters.genero === "hembra"}
+                onChange={handleFilterChange}
+              />
+              Femenino
+            </label>
+          </div>
+        </div>
+
+        <div className="filter-group">
+          <h3>Estado:</h3>
+          <div className="button-group">
+            <label>
+              <input
+                type="checkbox"
+                name="estado"
+                value="adopcion"
+                checked={filters.estado === "adopcion"}
+                onChange={handleFilterChange}
+              />
+              En adopción
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="estado"
+                value="Adoptado"
+                checked={filters.estado === "Adoptado"}
+                onChange={handleFilterChange}
+              />
+              Adoptado
+            </label>
+          </div>
+        </div>
+
+        {/* Botón de filtrar dentro del formulario */}
+        <div className="filter-button">
+          <button type="submit">FILTRAR</button>
+        </div>
+      </form>
+
+      {!selectedPet ? (
+        <PetList pets={filteredPets} handleAdopt={handleAdopt} />
+      ) : (
+        <AdoptionForm pet={selectedPet} />
       )}
     </div>
   );
-}
+};
 
 export default App;

@@ -1,38 +1,123 @@
-.App {
+/* Modo oscuro predeterminado */
+body {
+  background-color: #121212;
+  color: #fff;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif; /* Fuente para toda la página */
+}
+
+h1 {
   text-align: center;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  color: rgb(162, 1, 162); /* Cambiar el color del título a morado */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h3 {
+  color: lightgreen;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+.card {
+  background-color: #1e1e1e;
+  color: #fff;
+  border: 1px solid #333;
+  border-radius: 8px;
+  width: 200px; /* Ancho fijo para las cartas */
+  min-height: 350px; /* Altura mínima para las cartas */
+  margin: 10px; /* Espaciado entre cartas */
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column; /* Para que el contenido esté en columna */
+  justify-content: space-between; /* Espaciado igual entre el contenido */
+  overflow: hidden; /* Para evitar que el contenido desborde la carta */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.card img {
+  width: 100%;
+  height: 150px; /* Alto fijo para las imágenes */
+  object-fit: cover; /* Para que las imágenes se ajusten correctamente */
+  border-radius: 8px;
+}
+
+.card:hover {
+  transform: scale(1.05); /* Efecto de hover */
+}
+
+button {
+  font-weight: bold;
+  background-color: #bb86fc;
+  color: #000;
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  cursor: pointer;
+  margin-top: auto; /* Para que el botón esté en la parte inferior */
+}
+
+button:hover {
+  background-color: #6200ee;
+}
+
+/* Estilos del formulario */
+form {
+  background-color: #1e1e1e; /* Fondo oscuro para el formulario */
+  padding: 20px; /* Espaciado interno */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra suave */
+  max-width: 100%; /* Ancho máximo del formulario al 100% */
+  margin: 20px auto; /* Centrar el formulario en la página */
+  display: flex; /* Usar flexbox para alinear horizontalmente */
+  justify-content: center; /* Centrar el contenido del formulario */
+  flex-wrap: wrap; /* Permitir que los elementos se envuelvan si no hay espacio */
+}
+
+.filter-group {
+  display: flex; /* Uso de flexbox para alinear elementos */
+  justify-content: center; /* Centrar contenido en la línea */
+  align-items: center; /* Centrar verticalmente */
+  margin: 0 10px; /* Espaciado horizontal entre grupos de filtros */
+}
+
+.filter-group h3 {
+  margin-right: 10px; /* Espaciado entre el título y los checkboxes */
+}
+
+.button-group {
+  display: flex; /* Uso de flexbox para alinear checkboxes */
+  justify-content: center; /* Centrar checkboxes */
+  align-items: center; /* Centrar verticalmente */
+}
+
+.label {
+  margin: 0 5px; /* Espaciado entre checkboxes reducido */
+}
+
+/* Nueva clase para el botón centrado */
+.filter-button {
+  display: flex; /* Usar flexbox para centrar el botón */
+  justify-content: center; /* Centrar el botón */
+  width: 100%; /* Hacer que el botón ocupe todo el ancho */
+  margin-top: 10px; /* Espaciado encima del botón */
+}
+
+button[type="submit"] {
+  font-weight: bold;
+  background-color: #bb86fc; /* Color de fondo del botón */
+  color: #000; /* Color del texto del botón */
+  border: none; /* Sin borde */
+  border-radius: 4px; /* Bordes redondeados */
+  padding: 15px 30px; /* Aumentar el tamaño del botón */
+  cursor: pointer; /* Cambiar el cursor al pasar el mouse */
+  transition: background-color 0.3s; /* Transición suave del color de fondo */
+}
+
+button[type="submit"]:hover {
+  background-color: #6200ee; /* Color de fondo al pasar el mouse */
 }
