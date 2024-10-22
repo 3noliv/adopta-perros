@@ -1,15 +1,14 @@
-/* Modo oscuro predeterminado */
 body {
   background-color: #121212;
   color: #fff;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif; /* Fuente para toda la página */
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 h1 {
   text-align: center;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  color: rgb(162, 1, 162); /* Cambiar el color del título a morado */
+  color: rgb(162, 1, 162);
 }
 
 h3 {
@@ -41,7 +40,7 @@ h3 {
 
 .card img {
   width: 100%;
-  height: 150px; /* Alto fijo para las imágenes */
+  height: 150px;
   object-fit: cover; /* Para que las imágenes se ajusten correctamente */
   border-radius: 8px;
 }
@@ -58,7 +57,7 @@ button {
   border-radius: 4px;
   padding: 10px;
   cursor: pointer;
-  margin-top: auto; /* Para que el botón esté en la parte inferior */
+  margin-top: auto;
 }
 
 button:hover {
@@ -67,91 +66,87 @@ button:hover {
 
 /* Estilos del formulario */
 form {
-  background-color: #1e1e1e; /* Fondo oscuro para el formulario */
-  padding: 20px; /* Espaciado interno */
-  border-radius: 8px; /* Bordes redondeados */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra suave */
-  max-width: 100%; /* Ancho máximo del formulario al 100% */
-  margin: 20px auto; /* Centrar el formulario en la página */
-  display: flex; /* Usar flexbox para alinear horizontalmente */
-  justify-content: center; /* Centrar el contenido del formulario */
-  flex-wrap: wrap; /* Permitir que los elementos se envuelvan si no hay espacio */
+  background-color: #1e1e1e;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  max-width: 100%;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-.filter-group {
-  display: flex; /* Uso de flexbox para alinear horizontalmente */
-  justify-content: center; /* Centrar el contenido */
-  align-items: center; /* Alinear verticalmente los elementos en el centro */
-  margin: 0 10px; /* Espaciado horizontal entre grupos de filtros */
-}
-
-.filter-group h3 {
-  margin: 0 10px 0 0; /* Quitar margen inferior y añadir margen derecho */
-  color: lightgreen; /* Color del texto */
-  font-size: 16px; /* Ajustar tamaño de la fuente para coherencia */
-}
-
-.button-group {
-  display: flex; /* Uso de flexbox para alinear checkboxes */
-  justify-content: center; /* Centrar checkboxes */
-  align-items: center; /* Alinear verticalmente */
-  margin-left: 10px; /* Añadir margen izquierdo para separarlos del título */
-}
-
-.label {
-  margin: 0 5px; /* Espaciado entre checkboxes reducido */
-}
-
-/* Ajuste del select del filtro "Tipo de animal" */
-select {
-  background-color: #1e1e1e; /* Fondo oscuro para el select */
-  color: #fff; /* Texto blanco */
-  border: 1px solid #333; /* Borde oscuro */
-  border-radius: 4px; /* Bordes redondeados */
-  padding: 10px; /* Espaciado interno */
-  font-size: 16px; /* Tamaño de fuente consistente */
-  cursor: pointer; /* Cambiar el cursor al pasar sobre el select */
-  margin: 0; /* Sin margen vertical */
-  width: auto; /* Ajuste de ancho automático */
-}
-
-select:focus {
-  outline: none; /* Eliminar el borde predeterminado en el foco */
-  border-color: #bb86fc; /* Cambiar el color del borde al hacer foco */
-  box-shadow: 0 0 5px rgba(187, 134, 252, 0.5); /* Sombra suave morada */
-}
-
-/* Opciones del select */
-option {
-  background-color: #1e1e1e; /* Fondo oscuro para las opciones */
-  color: #fff; /* Texto blanco */
-}
-
-/* Ajuste para el grupo de filtros */
 .filter-group {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px; /* Espaciado inferior */
+  margin: 0 10px;
+}
+
+.filter-group h3 {
+  margin: 0 10px 0 0;
+  color: lightgreen;
+  font-size: 16px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.label {
+  margin: 0 5px;
+}
+
+select {
+  background-color: #1e1e1e;
+  color: #fff;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 0;
+  width: auto;
+}
+
+select:focus {
+  outline: none;
+  border-color: #bb86fc;
+  box-shadow: 0 0 5px rgba(187, 134, 252, 0.5);
+}
+
+option {
+  background-color: #1e1e1e;
+  color: #fff;
+}
+
+.filter-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 h3 {
-  color: lightgreen; /* Mantener color del texto */
-  margin-right: 10px; /* Espacio entre el título y los checkboxes */
-  font-size: 16px; /* Tamaño consistente */
+  color: lightgreen;
+  margin-right: 10px;
+  font-size: 16px;
 }
 
-/* Estilos para el botón de filtro */
 .filter-button {
-  display: flex; /* Usar flexbox para centrar el botón */
-  justify-content: center; /* Centrar el botón */
-  width: 100%; /* Hacer que el botón ocupe todo el ancho */
-  margin-top: 10px; /* Espaciado encima del botón */
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 10px;
 }
 
 .filter-button button {
-  background-color: #bb86fc; /* Mantener color morado */
-  color: #000; /* Texto negro */
+  background-color: #bb86fc;
+  color: #000;
   border: none;
   border-radius: 4px;
   padding: 10px 20px;
@@ -161,18 +156,22 @@ h3 {
 }
 
 .filter-button button:hover {
-  background-color: #6200ee; /* Efecto hover morado oscuro */
+  background-color: #6200ee;
 }
 
-/* Ajustes adicionales para el rango de edad */
 .age-range-select {
-  background-color: #1e1e1e; /* Fondo oscuro para el select de rango de edad */
-  color: #fff; /* Texto blanco */
-  border: 1px solid #333; /* Borde oscuro */
-  border-radius: 4px; /* Bordes redondeados */
-  padding: 10px; /* Espaciado interno */
-  font-size: 16px; /* Tamaño de fuente consistente */
-  cursor: pointer; /* Cambiar el cursor al pasar sobre el select */
-  margin: 0; /* Sin margen vertical */
-  width: auto; /* Ajuste de ancho automático */
+  background-color: #1e1e1e;
+  color: #fff;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 0;
+  width: auto;
+}
+
+p {
+  margin-top: 2px;
+  line-height: 1.2;
 }

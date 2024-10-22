@@ -9,14 +9,14 @@
 
 .adoption-form h2 {
   text-align: center;
-  color: #bb86fc; /* Color morado */
+  color: #bb86fc;
   margin-bottom: 20px;
 }
 
 .adoption-form {
   display: flex;
   flex-direction: column;
-  gap: 15px; /* Espaciado entre grupos */
+  gap: 15px;
 }
 
 .form-group {
@@ -26,7 +26,7 @@
 
 label {
   font-weight: bold;
-  color: lightgray; /* Color verde claro */
+  color: lightgray;
   margin-bottom: 5px;
 }
 
@@ -35,22 +35,22 @@ textarea {
   padding: 10px;
   border-radius: 4px;
   border: 1px solid #444;
-  background-color: #333; /* Fondo oscuro de los campos */
-  color: #fff; /* Texto blanco */
+  background-color: #333;
+  color: #fff;
 }
 
 input:focus,
 textarea:focus {
   outline: none;
-  border-color: #bb86fc; /* Borde morado en focus */
+  border-color: #bb86fc;
 }
 
 textarea {
-  min-height: 100px; /* Altura mínima del textarea */
+  min-height: 100px;
 }
 
 button {
-  background-color: #bb86fc; /* Botón morado */
+  background-color: #bb86fc;
   color: #000;
   border: none;
   border-radius: 4px;
