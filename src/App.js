@@ -10,6 +10,7 @@ const App = () => {
     tipo: "",
     genero: "",
     estado: "",
+    ageRange: "",
   });
   const [appliedFilters, setAppliedFilters] = useState(filters);
 
@@ -27,11 +28,9 @@ const App = () => {
 
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
-
-    // Actualiza el filtro solo para la categoría seleccionada
     setFilters((prev) => ({
       ...prev,
-      [name]: prev[name] === value ? "" : value,
+      [name]: value,
     }));
   };
 
@@ -40,11 +39,34 @@ const App = () => {
     setAppliedFilters(filters);
   };
 
+  const convertAgeToMonths = (age) => {
+    if (!age) return 0;
+    const normalizedAge = age.toLowerCase().trim();
+    const parts = normalizedAge.split(" ");
+    if (parts.length < 2) return 0;
+    const value = parseInt(parts[0]);
+    const unit = parts[1];
+    if (unit.startsWith("mes")) {
+      return value;
+    } else if (unit.startsWith("año")) {
+      return value * 12;
+    }
+    return 0;
+  };
+
+  // Filtrar mascotas solo cuando se presiona el botón
   const filteredPets = pets.filter((pet) => {
+    const petAgeInMonths = convertAgeToMonths(pet.edad);
+    const selectedAgeRange = appliedFilters.ageRange;
+
     return (
       (appliedFilters.tipo ? pet.tipo === appliedFilters.tipo : true) &&
       (appliedFilters.genero ? pet.genero === appliedFilters.genero : true) &&
-      (appliedFilters.estado ? pet.estado === appliedFilters.estado : true)
+      (appliedFilters.estado ? pet.estado === appliedFilters.estado : true) &&
+      (selectedAgeRange
+        ? petAgeInMonths >= parseInt(selectedAgeRange.split("-")[0]) &&
+          petAgeInMonths <= parseInt(selectedAgeRange.split("-")[1])
+        : true)
     );
   });
 
@@ -54,83 +76,62 @@ const App = () => {
       <form onSubmit={handleFilterSubmit} className="filter-form">
         <div className="filter-group">
           <h3>Tipo de animal:</h3>
-          <div className="button-group">
-            <label>
-              <input
-                type="checkbox"
-                name="tipo"
-                value="Perro"
-                checked={filters.tipo === "Perro"}
-                onChange={handleFilterChange}
-              />
-              Perro
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="tipo"
-                value="Gato"
-                checked={filters.tipo === "Gato"}
-                onChange={handleFilterChange}
-              />
-              Gato
-            </label>
-          </div>
+          <select
+            name="tipo"
+            value={filters.tipo}
+            onChange={handleFilterChange}
+          >
+            <option value="">Todos</option>
+            <option value="Perro">Perro</option>
+            <option value="Gato">Gato</option>
+            <option value="Conejo">Conejo</option>
+          </select>
         </div>
 
         <div className="filter-group">
           <h3>Sexo:</h3>
-          <div className="button-group">
-            <label>
-              <input
-                type="checkbox"
-                name="genero"
-                value="macho"
-                checked={filters.genero === "macho"}
-                onChange={handleFilterChange}
-              />
-              Masculino
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="genero"
-                value="hembra"
-                checked={filters.genero === "hembra"}
-                onChange={handleFilterChange}
-              />
-              Femenino
-            </label>
-          </div>
+          <select
+            name="genero"
+            value={filters.genero}
+            onChange={handleFilterChange}
+          >
+            <option value="">Todos</option>
+            <option value="macho">Masculino</option>
+            <option value="hembra">Femenino</option>
+          </select>
         </div>
 
         <div className="filter-group">
           <h3>Estado:</h3>
-          <div className="button-group">
-            <label>
-              <input
-                type="checkbox"
-                name="estado"
-                value="adopcion"
-                checked={filters.estado === "adopcion"}
-                onChange={handleFilterChange}
-              />
-              En adopción
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="estado"
-                value="Adoptado"
-                checked={filters.estado === "Adoptado"}
-                onChange={handleFilterChange}
-              />
-              Adoptado
-            </label>
-          </div>
+          <select
+            name="estado"
+            value={filters.estado}
+            onChange={handleFilterChange}
+          >
+            <option value="">Todos</option>
+            <option value="adopcion">En adopción</option>
+            <option value="adoptado">Adoptado</option>
+            <option value="perdido">Perdido</option>
+          </select>
         </div>
 
-        {/* Botón de filtrar dentro del formulario */}
+        <div className="filter-group">
+          <h3>Rango de Edad:</h3>
+          <select
+            name="ageRange"
+            value={filters.ageRange}
+            onChange={handleFilterChange}
+          >
+            <option value="">Todos</option>
+            <option value="0-5">0 a 5 meses</option>
+            <option value="6-12">6 meses a 1 año</option>
+            <option value="13-24">1 a 2 años</option>
+            <option value="25-60">2 a 5 años</option>
+            <option value="61-120">5 a 10 años</option>
+            <option value="121-999">Más de 10 años</option>
+          </select>
+        </div>
+
         <div className="filter-button">
           <button type="submit">FILTRAR</button>
         </div>

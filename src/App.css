@@ -79,27 +79,69 @@ form {
 }
 
 .filter-group {
-  display: flex; /* Uso de flexbox para alinear elementos */
-  justify-content: center; /* Centrar contenido en la línea */
-  align-items: center; /* Centrar verticalmente */
+  display: flex; /* Uso de flexbox para alinear horizontalmente */
+  justify-content: center; /* Centrar el contenido */
+  align-items: center; /* Alinear verticalmente los elementos en el centro */
   margin: 0 10px; /* Espaciado horizontal entre grupos de filtros */
 }
 
 .filter-group h3 {
-  margin-right: 10px; /* Espaciado entre el título y los checkboxes */
+  margin: 0 10px 0 0; /* Quitar margen inferior y añadir margen derecho */
+  color: lightgreen; /* Color del texto */
+  font-size: 16px; /* Ajustar tamaño de la fuente para coherencia */
 }
 
 .button-group {
   display: flex; /* Uso de flexbox para alinear checkboxes */
   justify-content: center; /* Centrar checkboxes */
-  align-items: center; /* Centrar verticalmente */
+  align-items: center; /* Alinear verticalmente */
+  margin-left: 10px; /* Añadir margen izquierdo para separarlos del título */
 }
 
 .label {
   margin: 0 5px; /* Espaciado entre checkboxes reducido */
 }
 
-/* Nueva clase para el botón centrado */
+/* Ajuste del select del filtro "Tipo de animal" */
+select {
+  background-color: #1e1e1e; /* Fondo oscuro para el select */
+  color: #fff; /* Texto blanco */
+  border: 1px solid #333; /* Borde oscuro */
+  border-radius: 4px; /* Bordes redondeados */
+  padding: 10px; /* Espaciado interno */
+  font-size: 16px; /* Tamaño de fuente consistente */
+  cursor: pointer; /* Cambiar el cursor al pasar sobre el select */
+  margin: 0; /* Sin margen vertical */
+  width: auto; /* Ajuste de ancho automático */
+}
+
+select:focus {
+  outline: none; /* Eliminar el borde predeterminado en el foco */
+  border-color: #bb86fc; /* Cambiar el color del borde al hacer foco */
+  box-shadow: 0 0 5px rgba(187, 134, 252, 0.5); /* Sombra suave morada */
+}
+
+/* Opciones del select */
+option {
+  background-color: #1e1e1e; /* Fondo oscuro para las opciones */
+  color: #fff; /* Texto blanco */
+}
+
+/* Ajuste para el grupo de filtros */
+.filter-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px; /* Espaciado inferior */
+}
+
+h3 {
+  color: lightgreen; /* Mantener color del texto */
+  margin-right: 10px; /* Espacio entre el título y los checkboxes */
+  font-size: 16px; /* Tamaño consistente */
+}
+
+/* Estilos para el botón de filtro */
 .filter-button {
   display: flex; /* Usar flexbox para centrar el botón */
   justify-content: center; /* Centrar el botón */
@@ -107,17 +149,30 @@ form {
   margin-top: 10px; /* Espaciado encima del botón */
 }
 
-button[type="submit"] {
-  font-weight: bold;
-  background-color: #bb86fc; /* Color de fondo del botón */
-  color: #000; /* Color del texto del botón */
-  border: none; /* Sin borde */
-  border-radius: 4px; /* Bordes redondeados */
-  padding: 15px 30px; /* Aumentar el tamaño del botón */
-  cursor: pointer; /* Cambiar el cursor al pasar el mouse */
-  transition: background-color 0.3s; /* Transición suave del color de fondo */
+.filter-button button {
+  background-color: #bb86fc; /* Mantener color morado */
+  color: #000; /* Texto negro */
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
 }
 
-button[type="submit"]:hover {
-  background-color: #6200ee; /* Color de fondo al pasar el mouse */
+.filter-button button:hover {
+  background-color: #6200ee; /* Efecto hover morado oscuro */
+}
+
+/* Ajustes adicionales para el rango de edad */
+.age-range-select {
+  background-color: #1e1e1e; /* Fondo oscuro para el select de rango de edad */
+  color: #fff; /* Texto blanco */
+  border: 1px solid #333; /* Borde oscuro */
+  border-radius: 4px; /* Bordes redondeados */
+  padding: 10px; /* Espaciado interno */
+  font-size: 16px; /* Tamaño de fuente consistente */
+  cursor: pointer; /* Cambiar el cursor al pasar sobre el select */
+  margin: 0; /* Sin margen vertical */
+  width: auto; /* Ajuste de ancho automático */
 }
